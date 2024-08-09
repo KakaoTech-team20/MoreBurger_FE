@@ -9,7 +9,7 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
 
 // sample page routing
-const DetailPage = Loadable(lazy(() => import('views/detail-page')));
+// const DetailPage = Loadable(lazy(() => import('views/detail-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -31,8 +31,8 @@ const MainRoutes = {
       ]
     },
     {
-      path: 'detail-page',
-      element: <DetailPage />
+      path: 'sample-page',
+      // element: <DetailPage />
     }
   ]
 };
