@@ -2,7 +2,7 @@ import useSWR, { mutate } from 'swr';
 import { useMemo } from 'react';
 
 const initialState = {
-  openedItem: 'dashboard',
+  openedItem: 'home',
   openedComponent: 'buttons',
   openedHorizontalItem: null,
   isDashboardDrawerOpened: false,
@@ -12,7 +12,7 @@ const initialState = {
 export const endpoints = {
   key: 'api/menu',
   master: 'master',
-  dashboard: '/dashboard' // server URL
+  dashboard: '/home' // server URL
 };
 
 export function useGetMenuMaster() {

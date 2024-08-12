@@ -6,20 +6,20 @@ const icons = { IconDashboard };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
-const dashboard = {
-  id: 'dashboard',
-  title: 'Dashboard',
+const home = {
+  id: 'home',
+  title: 'Home',
   type: 'group',
   children: [
     {
       id: 'default',
-      title: 'Dashboard',
+      title: 'Home',
       type: 'item',
-      url: '/dashboard/default',
+      url: '/home',
       icon: icons.IconDashboard,
       breadcrumbs: false
     }
   ]
 };
 
-export default dashboard;
+export default home;
