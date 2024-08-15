@@ -12,7 +12,8 @@ import Typography from '@mui/material/Typography';
 
 // constant
 const headerSX = {
-  '& .MuiCardHeader-action': { mr: 0 }
+  '& .MuiCardHeader-action': { mr: 0 },
+  padding: '16px 16px'
 };
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
 // material-ui
 import AppBar from '@mui/material/AppBar';
@@ -83,7 +84,7 @@ const MainLayout = () => {
 
       {/* main content */}
       <Main theme={theme} open={leftDrawerOpened}>
-        
+        <Outlet />
       </Main>
       <Customization />
     </Box>

@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 
 // project
-import BurgerCard from './BurgerCard';
+// import BurgerCard from './BurgerCard';
+// import { gridSpacing } from 'store/constant';
+import MainCard from 'ui-component/cards/MainCard';
+import { Typography } from '@mui/material';
 
 // assets
 // import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
@@ -13,17 +16,19 @@ import BurgerCard from './BurgerCard';
 
 
 const Home = () => {
-  const [setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
   return (
-    <Grid item xs={12} md={4}>
-      <BurgerCard isLoading={isLoading} />
-    </Grid>
-);  
+    <MainCard title="오늘의 추천 메뉴!">
+      <Typography variant="body2">
+        추천 메뉴가 뜹니다~
+      </Typography>
+  </MainCard>
+  );  
 };
 
 export default Home;
