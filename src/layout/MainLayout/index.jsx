@@ -83,6 +83,7 @@ const MainLayout = () => {
 
       {/* main content */}
       <Main theme={theme} open={leftDrawerOpened}>
+        
       </Main>
       <Customization />
     </Box>

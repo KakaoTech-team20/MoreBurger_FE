@@ -52,7 +52,7 @@ const Customization = () => {
             zIndex: theme.zIndex.speedDial
           }}
         >
-          <AnimateButton type="rotate">
+          <AnimateButton type="scale">
             <IconButton color="inherit" size="large" disableRipple>
               <IconSettings />
             </IconButton>
@@ -72,7 +72,6 @@ const Customization = () => {
       >
         <PerfectScrollbar component="div">
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
-            {/* AI 챗봇 */}
           </Grid>
         </PerfectScrollbar>
       </Drawer>

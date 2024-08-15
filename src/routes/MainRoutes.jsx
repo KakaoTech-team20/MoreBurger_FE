@@ -3,10 +3,11 @@ import { lazy } from 'react';
 // project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
+// import { element } from 'prop-types';
 // import DetailPage from 'views/detail-page';
 
 // dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard')));
+const HomeDefault = Loadable(lazy(() => import('views/home')));
 
 // sample page routing
 // const DetailPage = Loadable(lazy(() => import('views/detail-page')));
@@ -19,20 +20,17 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <DashboardDefault />
+      element: <HomeDefault />
     },
     {
-      path: 'dashboard',
-      children: [
+      path: 'home',
+      element: <HomeDefault />
+      /* children: [
         {
           path: 'default',
           element: <DashboardDefault />
         }
-      ]
-    },
-    {
-      path: 'sample-page',
-      // element: <DetailPage />
+      ] */
     }
   ]
 };

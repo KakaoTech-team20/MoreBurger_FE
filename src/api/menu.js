@@ -1,5 +1,6 @@
 import useSWR, { mutate } from 'swr';
 import { useMemo } from 'react';
+// import home from 'menu-items/home';
 
 const initialState = {
   openedItem: 'home',
@@ -12,7 +13,7 @@ const initialState = {
 export const endpoints = {
   key: 'api/menu',
   master: 'master',
-  dashboard: '/home' // server URL
+  home: '/home' // server URL
 };
 
 export function useGetMenuMaster() {

@@ -28,7 +28,7 @@ const customizationReducer = (state = initialState, action) => {
         ...state,
         opened: action.opened
       };
-    case actionTypes.SET_FONT_FAMILY:
+    /* case actionTypes.SET_FONT_FAMILY:
       return {
         ...state,
         fontFamily: action.fontFamily
@@ -37,7 +37,7 @@ const customizationReducer = (state = initialState, action) => {
       return {
         ...state,
         borderRadius: action.borderRadius
-      };
+      }; */
     default:
       return state;
   }
