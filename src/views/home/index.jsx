@@ -16,11 +16,14 @@ import { Typography } from '@mui/material';
 
 
 const Home = () => {
-  // const [isLoading, setLoading] = useState(true);
+  /*
+  * 나중에 상태관리 필요할 때 사용 
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(false);
   }, []);
+  */
 
   return (
     <MainCard title="오늘의 추천 메뉴!">
