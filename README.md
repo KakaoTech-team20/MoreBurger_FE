@@ -40,6 +40,7 @@
 ### build 파일 생성 및 실행(로컬 기준)
 
 #### 실행 순서
+해당 프로젝트 폴더 터미널에서
 1. yarn build
 2. yarn global add serve
 3. serve -s 빌드된 폴더 이름
