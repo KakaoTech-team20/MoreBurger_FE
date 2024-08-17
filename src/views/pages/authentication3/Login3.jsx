@@ -40,7 +40,7 @@ const Login = () => {
                             모아버거에 어서오세요!
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={{ xs: 'center', md: 'inherit' }}>
-                            SNS로 로그인하기
+                            {/* SNS로 로그인하기 */}
                           </Typography>
                         </Stack>
                       </Grid>

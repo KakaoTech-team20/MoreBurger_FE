@@ -73,7 +73,7 @@ const AuthLogin = ({ ...others }) => {
               <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
                 <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
               </Box>
-              Sign in with Google
+              Google로 로그인하기
             </Button>
           </AnimateButton>
         </Grid>
@@ -109,7 +109,7 @@ const AuthLogin = ({ ...others }) => {
         </Grid>
         <Grid item xs={12} container alignItems="center" justifyContent="center">
           <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">Sign in with Email</Typography>
+            <Typography variant="subtitle1">이메일로 로그인하기</Typography>
           </Box>
         </Grid>
       </Grid>
@@ -197,7 +197,7 @@ const AuthLogin = ({ ...others }) => {
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Sign in
+                  로그인
                 </Button>
               </AnimateButton>
             </Box>
