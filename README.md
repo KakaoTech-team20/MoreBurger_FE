@@ -36,3 +36,15 @@
     "vite-jsconfig-paths": "^2.0.1",
     "web-vitals": "^3.5.2",
     "yup": "^1.3.3"
+
+### build 파일 생성 및 실행(로컬 기준)
+
+#### 실행 순서
+1. yarn build
+2. yarn global add serve
+3. serve -s dist
+
+#### 환경
+* nodejs 18
+
+(참고) 최신 nodejs(저의 경우 22)에서 빌드 파일 실행 시 모듈 중 하나랑 충돌 났어서 18로 내렸습니다
