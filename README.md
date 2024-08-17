@@ -42,7 +42,7 @@
 #### 실행 순서
 1. yarn build
 2. yarn global add serve
-3. serve -s dist
+3. serve -s 빌드된 폴더 이름
 
 #### 환경
 * nodejs 18
