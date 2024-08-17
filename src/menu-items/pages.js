@@ -8,10 +8,14 @@ const icons = {
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
+/* 상태관리로
+토큰 있을 때 -> 로
+*/
+
 const pages = {
   id: 'pages',
-  title: 'Pages',
-  caption: 'Pages Caption',
+  title: '로그인/회원가입',
+  // caption: 'Pages Caption',
   type: 'group',
   children: [
     {
@@ -19,7 +23,6 @@ const pages = {
       title: 'Authentication',
       type: 'collapse',
       icon: icons.IconKey,
-
       children: [
         {
           id: 'login3',
