@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REPO = 'KakaoTech-team20/MoreBurger_FE'
-        S3_BUCKET = 'S3_Bucket_Front'
+        S3_BUCKET = 's3://kakao-moreburger-front-test'
         AWS_CREDENTIALS_ID = 'S3_IAM_Front'
     }
 
