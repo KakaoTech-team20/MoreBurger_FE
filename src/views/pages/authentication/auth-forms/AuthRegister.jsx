@@ -131,7 +131,7 @@ const AuthRegister = ({ ...others }) => {
           password: Yup.string().max(255).required('비밀번호를 입력해주세요')
         })}
       >
-        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
+        {({ errors, handleBlur, handleChange, handleSubmit, sendAuth, isValid, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-email-register">Email</InputLabel>
@@ -150,6 +150,42 @@ const AuthRegister = ({ ...others }) => {
                 </FormHelperText>
               )}
             </FormControl>
+            
+            <Grid container justifyContent="flex-end">
+              <Button 
+                disableElevation disabled={sendAuth}
+                size="large" type="submit" variant="contained" color="secondary"
+                >
+                인증</Button>
+            </Grid>
+
+            <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
+              <InputLabel htmlFor="outlined-adornment-auth-num">인증번호</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-auth-num"
+                type="number"
+                value={values.email}
+                name="auth-num"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                inputProps={{}}
+              />
+              {touched.email && errors.email && (
+                <FormHelperText error id="standard-weight-helper-text--register">
+                  {errors.email}
+                </FormHelperText>
+              )}
+            </FormControl>
+            
+            <Grid container justifyContent="flex-end">
+              <Button 
+                disableElevation disabled={isValid}
+                size="large" type="submit" variant="contained" color="secondary"
+              >
+              확인</Button>
+            </Grid>
+
+            <Divider sx = {{marginTop: 1, marginBlock: 1}} />
 
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-password-register">Password</InputLabel>
