@@ -20,20 +20,27 @@ const pages = {
   children: [
     {
       id: 'authentication',
-      title: 'Authentication',
-      type: 'collapse',
+      title: '내 정보',
+      type: 'collapse', 
       icon: icons.IconKey,
       children: [
         {
           id: 'login3',
-          title: 'Login',
+          title: '로그인',
           type: 'item',
           url: '/pages/login/login3',
           target: true
         },
         {
           id: 'register3',
-          title: 'Register',
+          title: '회원가입',
+          type: 'item',
+          url: '/pages/register/register3',
+          target: true
+        },
+        {
+          id: 'detail',
+          title: '상세정보',
           type: 'item',
           url: '/pages/register/register3',
           target: true
