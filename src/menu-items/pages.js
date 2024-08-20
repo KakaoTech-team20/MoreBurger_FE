@@ -42,7 +42,7 @@ const pages = {
           id: 'detail',
           title: '상세정보',
           type: 'item',
-          url: '/pages/register/register3',
+          url: '/pages/register/detail3',
           target: true
         }
       ]

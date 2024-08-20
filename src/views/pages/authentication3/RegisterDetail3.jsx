@@ -11,7 +11,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from 'ui-component/Logo';
-import AuthRegister from '../authentication/auth-forms/AuthRegister';
+import AuthRegisterDetail from '../authentication/auth-forms/AuthRegisterDetail';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
@@ -35,21 +35,7 @@ const RegisterDetail3 = () => {
                     </Link>
                   </Grid>
                   <Grid item xs={12}>
-                    <Grid container direction={{ xs: 'column-reverse', md: 'row' }} alignItems="center" justifyContent="center">
-                      <Grid item>
-                        <Stack alignItems="center" justifyContent="center" spacing={1}>
-                          <Typography color="secondary.main" gutterBottom variant={downMD ? 'h3' : 'h2'}>
-                            회원가입
-                          </Typography>
-                          <Typography variant="caption" fontSize="16px" textAlign={{ xs: 'center', md: 'inherit' }}>
-                            SNS로 회원가입하기
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <AuthRegister />
+                    <AuthRegisterDetail />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />

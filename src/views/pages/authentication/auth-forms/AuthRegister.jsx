@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -36,6 +38,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
 const AuthRegister = ({ ...others }) => {
+  const navigate = useNavigate();
+
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
@@ -45,8 +49,11 @@ const AuthRegister = ({ ...others }) => {
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState();
 
-  const googleHandler = async () => {
-    console.error('Register');
+  const googleSuccessHandler = async (response) => {
+    const userData = jwtDecode(response.credential);
+
+    console.log("회원가입 성공", userData);
+    /* email 정보 백엔드로 보내주기 */
   };
 
   const handleClickShowPassword = () => {
@@ -63,32 +70,26 @@ const AuthRegister = ({ ...others }) => {
     setLevel(strengthColor(temp));
   };
 
+  const handleNext = () => {
+    navigate('/pages/register/detail3');
+  }
+
   useEffect(() => {
     changePassword('123456');
   }, []);
 
   return (
     <>
-      <Grid container direction="column" justifyContent="center" spacing={2}>
+      <Grid container direction="column" justifyContent="center" spacing={2} alignItems="center">
         <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              variant="outlined"
-              fullWidth
-              onClick={googleHandler}
-              size="large"
-              sx={{
-                color: 'grey.700',
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100]
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
-              </Box>
-              Google로 로그인하기
-            </Button>
-          </AnimateButton>
+          <GoogleOAuthProvider clientId='260417354851-ajeqr5t63t2qk7cs4g96leojk7hsoipc.apps.googleusercontent.com'>
+            <Box sx={{ textAlign: 'center', mt: 2 }}>
+              <GoogleLogin
+                onSuccess={googleSuccessHandler}
+                uxMode="redirect"
+              />
+            </Box>
+          </GoogleOAuthProvider>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ alignItems: 'center', display: 'flex' }}>
@@ -261,8 +262,11 @@ const AuthRegister = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  회원가입
+                <Button
+                  /* 버튼 클릭 시 사용자 세부정보 입력 페이지로 */
+                  onClick={handleNext}
+                  disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
+                  다음
                 </Button>
               </AnimateButton>
             </Box>
