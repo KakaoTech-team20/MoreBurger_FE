@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-
 // ===========================|| BURGER CARD ||=========================== //
 
 const BurgerCard = ({ isLoading }) => {
@@ -25,6 +24,10 @@ const BurgerCard = ({ isLoading }) => {
   //   setAnchorEl(event.currentTarget);
   // };
 
+  /*
+  추천 버거 자료 받아오는 함수
+  */
+
   return (
     <>
       {isLoading ? (
@@ -34,31 +37,9 @@ const BurgerCard = ({ isLoading }) => {
           border={false}
           content={false}
           sx={{
-            bgcolor: 'secondary.dark',
-            color: '#fff',
+            bgcolor: 'primary.light',
             overflow: 'hidden',
             position: 'relative',
-            '&:after': {
-              content: '""',
-              position: 'absolute',
-              width: 210,
-              height: 210,
-              background: theme.palette.secondary[800],
-              borderRadius: '50%',
-              top: { xs: -105, sm: -85 },
-              right: { xs: -140, sm: -95 }
-            },
-            '&:before': {
-              content: '""',
-              position: 'absolute',
-              width: 210,
-              height: 210,
-              background: theme.palette.secondary[800],
-              borderRadius: '50%',
-              top: { xs: -155, sm: -125 },
-              right: { xs: -70, sm: -15 },
-              opacity: 0.5
-            }
           }}
         >
           <Box sx={{ p: 5.25 }}>
