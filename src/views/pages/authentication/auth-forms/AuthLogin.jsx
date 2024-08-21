@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useGoogleLogin } from '@react-oauth/google';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -40,9 +41,17 @@ const AuthLogin = ({ ...others }) => {
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(true);
 
-  const googleHandler = async () => {
-    console.error('Login');
-  };
+  const googleHandler = useGoogleLogin({
+    onSuccess: async (res) => {
+      try {
+        console.log(res);
+      } catch (error) {
+        console.log('error');
+      }
+    },
+    flow: 'implicit'
+  });
+
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -71,7 +80,9 @@ const AuthLogin = ({ ...others }) => {
               }}
             >
               <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
+                <img src={Google} alt="google"
+                  width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }}
+                />
               </Box>
               Google로 로그인하기
             </Button>
@@ -177,17 +188,6 @@ const AuthLogin = ({ ...others }) => {
                 </FormHelperText>
               )}
             </FormControl>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-              {/* <FormControlLabel
-                control={
-                  <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                }
-                label="Remember me"
-              /> */}
-              {/* <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-                Forgot Password?
-              </Typography> */}
-            </Stack>
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
                 <FormHelperText error>{errors.submit}</FormHelperText>
