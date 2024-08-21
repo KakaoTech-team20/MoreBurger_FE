@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { CardMedia } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -14,6 +15,7 @@ import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 const BurgerCard = ({ isLoading }) => {
   const theme = useTheme();
+
 
   // const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -47,7 +49,22 @@ const BurgerCard = ({ isLoading }) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Typography sx={{ fontSize: '1.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>맛있는 햄버거</Typography>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image="src/assets/images/menus/menu1.jpeg"
+                      alt="Example"
+                      sx={{
+                        
+                      }}
+                    />
+                    <Typography 
+                      sx={{ 
+                        fontSize: '1.125rem', 
+                        fontWeight: 500, 
+                        mr: 1, mt: 1.75, mb: 0.75 
+                      }}
+                    >맛있는 햄버거</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -56,10 +73,22 @@ const BurgerCard = ({ isLoading }) => {
                   sx={{
                     fontSize: '1rem',
                     fontWeight: 500,
-                    color: 'secondary.200'
+                    color: 'text.dark'
                   }}
                 >
                   8,000₩
+                </Typography>
+              </Grid>
+              <Grid item sx={{ mb: 1.25 }}>
+                <Typography
+                  sx={{
+                    fontSize: '0.8rem',
+                    fontWeight: 500,
+                    color: 'text.dark',
+                    marginTop: 0
+                  }}
+                >
+                  브랜드이름
                 </Typography>
               </Grid>
             </Grid>
