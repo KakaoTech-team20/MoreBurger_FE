@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 
 // material-ui
@@ -49,12 +49,23 @@ const AuthRegister = ({ ...others }) => {
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState();
 
-  const googleSuccessHandler = async (response) => {
-    const userData = jwtDecode(response.credential);
+  // const googleSuccessHandler = async (response) => {
+  //   const userData = jwtDecode(response.credential);
+  //   console.log(response);
+  //   console.log("회원가입 성공", userData);
+  //   /* email 정보 백엔드로 보내주기 */
+  // };
 
-    console.log("회원가입 성공", userData);
-    /* email 정보 백엔드로 보내주기 */
-  };
+  const googleHandler = useGoogleLogin({
+    onSuccess: async (res) => {
+      try {
+        console.log(res);
+      } catch (error) {
+        console.log('error');
+      }
+    },
+    flow: 'implicit'
+  });
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -82,14 +93,27 @@ const AuthRegister = ({ ...others }) => {
     <>
       <Grid container direction="column" justifyContent="center" spacing={2} alignItems="center">
         <Grid item xs={12}>
-          <GoogleOAuthProvider clientId='260417354851-ajeqr5t63t2qk7cs4g96leojk7hsoipc.apps.googleusercontent.com'>
-            <Box sx={{ textAlign: 'center', mt: 2 }}>
-              <GoogleLogin
-                onSuccess={googleSuccessHandler}
-                uxMode="redirect"
-              />
-            </Box>
-          </GoogleOAuthProvider>
+          <AnimateButton>
+            <Button
+              disableElevation
+              fullWidth
+              onClick={googleHandler}
+              size="large"
+              variant="outlined"
+              sx={{
+                color: 'grey.700',
+                backgroundColor: theme.palette.grey[50],
+                borderColor: theme.palette.grey[100]
+              }}
+            >
+              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
+                <img src={Google} alt="google"
+                  width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }}
+                />
+              </Box>
+              Google로 로그인하기
+            </Button>
+          </AnimateButton>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ alignItems: 'center', display: 'flex' }}>

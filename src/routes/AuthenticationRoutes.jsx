@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // project imports
 import Loadable from 'ui-component/Loadable';
@@ -18,11 +19,17 @@ const AuthenticationRoutes = {
   children: [
     {
       path: '/pages/login/login3',
-      element: <AuthLogin3 />
+      element: 
+      <GoogleOAuthProvider clientId='260417354851-ajeqr5t63t2qk7cs4g96leojk7hsoipc.apps.googleusercontent.com'>
+        <AuthLogin3 />
+      </GoogleOAuthProvider>
     },
     {
       path: '/pages/register/register3',
-      element: <AuthRegister3 />
+      element: 
+      <GoogleOAuthProvider clientId='260417354851-ajeqr5t63t2qk7cs4g96leojk7hsoipc.apps.googleusercontent.com'>
+        <AuthRegister3 />
+      </GoogleOAuthProvider>
     },
     {
       path: '/pages/register/detail3',
