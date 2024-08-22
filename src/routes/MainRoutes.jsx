@@ -3,6 +3,8 @@ import { lazy } from 'react';
 // project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
+import { element } from 'prop-types';
+import DetailPage from 'views/detail-page';
 // import { element } from 'prop-types';
 // import DetailPage from 'views/detail-page';
 
@@ -31,6 +33,10 @@ const MainRoutes = {
           element: <DashboardDefault />
         }
       ] */
+    },
+    {
+      path: 'home/detail',
+      element: <DetailPage />
     }
   ]
 };

@@ -18,6 +18,12 @@ const home = {
       url: '/home',
       icon: icons.IconBurger,
       breadcrumbs: false
+    },
+    {
+      id: 'detail',
+      title: 'Detail',
+      type: 'item',
+      url: '/home/detail'
     }
   ]
 };
