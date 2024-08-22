@@ -39,12 +39,13 @@ const BurgerCard = ({ isLoading }) => {
           border={false}
           content={false}
           sx={{
-            bgcolor: 'primary.light', 
+            bgcolor: 'primary.light',
+            margin: 'auto'
           }}
         >
           <Box sx={{
             p: 5.25,
-            width: "250px"
+            // minWidth: "250px"
           }}>
             <Grid container direction="column">
               <Grid item>

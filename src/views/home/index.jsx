@@ -9,7 +9,6 @@ import { Typography } from '@mui/material';
 // import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
 import BurgerCard from './BurgerCard';
-import { is } from 'immutable';
 
 // assets
 // import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
@@ -34,6 +33,7 @@ const Home = () => {
       <Grid item
         alignContent="center"
         xs={3}
+        sx={{minWidth: "250px"}}
         key={i}>
         <BurgerCard isLoading={isLoading}></BurgerCard>
       </Grid>
@@ -43,13 +43,15 @@ const Home = () => {
   /* 
   SHOW TOTAL BURGERS
   */
-const totalNum = 10;
+const totalNum = 11;
 let totalItems = [];
 for (let i=0; i<totalNum; i++) {
   totalItems.push(
     <Grid item
       xs={3}
       alignContent="center"
+      // margin="auto"
+      sx={{minWidth: "250px"}}
       key={i}>
         <BurgerCard isLoading={isLoading}></BurgerCard>
     </Grid>
@@ -69,7 +71,6 @@ for (let i=0; i<totalNum; i++) {
           wrap='nowrap'
           style={{
             overflowX: 'auto',
-            display: 'flex'
           }}>
           {recommendedItems}
         </Grid>
@@ -79,7 +80,10 @@ for (let i=0; i<totalNum; i++) {
       그냥 햄버거 보여줌      
       */}
       <MainCard title="전체보기" sx ={{marginTop: '20px'}}>
-        <Grid container spacing={2}>
+        <Grid container
+          spacing={2}
+          marginX="auto"
+          >
           {totalItems}
         </Grid>
       </MainCard>
