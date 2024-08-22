@@ -9,6 +9,7 @@ import { Typography } from '@mui/material';
 // import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
 import BurgerCard from './BurgerCard';
+import { is } from 'immutable';
 
 // assets
 // import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
@@ -32,11 +33,8 @@ const Home = () => {
     recommendedItems.push(
       <Grid item
         alignContent="center"
-        key={i}
-        style={{
-          minWidth: "200px",
-          minHeight: "200px"
-        }}>
+        xs={3}
+        key={i}>
         <BurgerCard isLoading={isLoading}></BurgerCard>
       </Grid>
     );
@@ -45,7 +43,18 @@ const Home = () => {
   /* 
   SHOW TOTAL BURGERS
   */
-
+const totalNum = 10;
+let totalItems = [];
+for (let i=0; i<totalNum; i++) {
+  totalItems.push(
+    <Grid item
+      xs={3}
+      alignContent="center"
+      key={i}>
+        <BurgerCard isLoading={isLoading}></BurgerCard>
+    </Grid>
+  )
+}
 
 
 
@@ -56,12 +65,11 @@ const Home = () => {
       비로그인 시 -> 로그인 후 추천 메뉴를 받아보세요 띄우기
       */}
       <MainCard title="오늘의 추천 메뉴!">
-        <Grid container
-          gap={1.5}
-          wrap="nowrap"
+        <Grid container spacing={2}
+          wrap='nowrap'
           style={{
             overflowX: 'auto',
-            display: 'flex',
+            display: 'flex'
           }}>
           {recommendedItems}
         </Grid>
@@ -71,14 +79,8 @@ const Home = () => {
       그냥 햄버거 보여줌      
       */}
       <MainCard title="전체보기" sx ={{marginTop: '20px'}}>
-        <Grid container
-          gap={2}
-          wrap="nowrap"
-          style={{
-            overflowX: 'auto', // 가로 스크롤 활성화
-            display: 'flex',
-          }}>
-          전체 햄버거 리스트가 뜹니다~
+        <Grid container spacing={2}>
+          {totalItems}
         </Grid>
       </MainCard>
     </>

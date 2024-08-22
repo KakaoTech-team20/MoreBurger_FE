@@ -39,12 +39,13 @@ const BurgerCard = ({ isLoading }) => {
           border={false}
           content={false}
           sx={{
-            bgcolor: 'primary.light',
-            overflow: 'hidden',
-            position: 'relative',
+            bgcolor: 'primary.light', 
           }}
         >
-          <Box sx={{ p: 5.25 }}>
+          <Box sx={{
+            p: 5.25,
+            width: "250px"
+          }}>
             <Grid container direction="column">
               <Grid item>
                 <Grid container alignItems="center">
@@ -54,9 +55,6 @@ const BurgerCard = ({ isLoading }) => {
                       height="140"
                       image="src/assets/images/menus/menu1.jpeg"
                       alt="Example"
-                      sx={{
-                        
-                      }}
                     />
                     <Typography 
                       sx={{ 
