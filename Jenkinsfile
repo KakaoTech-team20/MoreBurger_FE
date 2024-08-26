@@ -30,8 +30,6 @@ pipeline {
                 script {
                     // Yarn을 사용해 프로젝트 빌드
                     sh 'yarn build'
-                    // 빌드된 디렉토리 확인
-                    sh 'ls -al'
                 }
             }
         }
@@ -42,7 +40,7 @@ pipeline {
                     script {
                         // 빌드된 파일을 S3 버킷에 업로드
                         sh '''
-                        aws s3 sync ../build/ s3://kakao-moreburger-front-test --delete
+                        aws s3 sync dist/ s3://kakao-moreburger-front-test --delete
                         '''
                     }
                 }
