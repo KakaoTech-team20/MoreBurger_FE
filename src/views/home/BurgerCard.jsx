@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -15,16 +16,15 @@ import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 const BurgerCard = ({ isLoading }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
 
   // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  /*
-  * 이미지 클릭 시 상세페이지로 이동하도록 핸들러 변경
-  */  
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
+ 
+  const handleClick = () => {
+    // setAnchorEl(event.currentTarget);
+    navigate(`/home/detail`);
+  };
 
   /*
   추천 버거 자료 받아오는 함수
@@ -43,9 +43,12 @@ const BurgerCard = ({ isLoading }) => {
             margin: 'auto'
           }}
         >
-          <Box sx={{
+          <Box 
+          onClick={handleClick}
+          sx={{
             p: 5.25,
-            // minWidth: "250px"
+            cursor: 'pointer',
+            // minWidth: "250px"            
           }}>
             <Grid container direction="column">
               <Grid item>
