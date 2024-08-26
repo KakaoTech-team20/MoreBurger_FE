@@ -24,11 +24,14 @@ pipeline {
             }
         }
 
+        
         stage('Build') {
             steps {
                 script {
                     // Yarn을 사용해 프로젝트 빌드
                     sh 'yarn build'
+                    // 빌드된 디렉토리 확인
+                    sh 'ls -al'
                 }
             }
         }
