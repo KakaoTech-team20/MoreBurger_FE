@@ -26,7 +26,11 @@ const DetailPage = () => {
 //   }, []);
 return (
     <Grid container spacing={2}
-        sx={{ padding: '2rem 15rem 2rem 15rem'}}>
+        sx={{
+            padding: '24px 8rem 24px 8rem',
+            width: '100%',
+            // minWidth: '600px'
+        }}>
       {/* 브랜드명 */}
       <Grid item xs={12} sx={{marginBottom: 5}}>
         <Typography sx={theme.typography.h2} gutterBottom>
@@ -41,7 +45,7 @@ return (
           component="img"
           image="/src/assets/images/menus/menu1.jpeg" // 실제 이미지 경로로 변경
           alt="버거 사진"
-          sx={{ width: '80%', height: 'auto' }}
+          sx={{ width: '20rem', height: '20rem' }}
         />
       </Grid>
 
@@ -50,7 +54,7 @@ return (
         <Typography sx={theme.typography.h3} gutterBottom>
           이름
         </Typography>
-        <Typography sx={theme.typography.body1} gutterBottom>
+        <Typography sx={theme.typography.menuCaption} gutterBottom>
           햄버거 설명
         </Typography>
         <Typography sx={theme.typography.subtitle1} gutterBottom>
@@ -72,7 +76,7 @@ return (
         </Grid>
 
         {/* 알레르기 정보 */}
-        <Typography variant="subtitle1" sx={{ marginTop: 5 }}>
+        <Typography  sx={{ marginTop: 5 }}>
           알레르기 정보
         </Typography>
         <Divider sx={{ marginBottom: 2 }} />
@@ -83,12 +87,18 @@ return (
         {/* 장바구니 및 구매 버튼 */}
         <Grid container spacing={2} sx={{ marginTop: 2 }}>
           <Grid item xs={6}>
-            <Button variant="contained" color="primary" fullWidth>
+            <Button
+                variant='contained'
+                fullWidth
+                sx={{...theme.components.MuiButton}}>
               장바구니
             </Button>
           </Grid>
           <Grid item xs={6}>
-            <Button variant="contained" color="secondary" fullWidth>
+            <Button
+                variant='contained'
+                fullWidth
+                sx={{...theme.components.MuiButton}}>
               구매
             </Button>
           </Grid>
