@@ -30,6 +30,7 @@ pipeline {
                 script {
                     // Yarn을 사용해 프로젝트 빌드
                     sh 'yarn build'
+                    sh 'ls -al'
                 }
             }
         }
