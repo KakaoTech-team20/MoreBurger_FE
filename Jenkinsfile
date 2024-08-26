@@ -39,7 +39,7 @@ pipeline {
                     script {
                         // 빌드된 파일을 S3 버킷에 업로드
                         sh '''
-                        aws s3 sync build/ ${S3_BUCKET} --delete
+                        aws s3 sync build/ s3://kakao-moreburger-front-test --delete
                         '''
                     }
                 }
