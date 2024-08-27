@@ -24,6 +24,12 @@ const home = {
       title: 'Detail',
       type: 'item',
       url: '/home/detail'
+    },
+    {
+      id: 'detail-seller',
+      title: 'DetailSeller',
+      type: 'item',
+      url: '/home/detail-seller'
     }
   ]
 };

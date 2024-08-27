@@ -18,13 +18,13 @@ const DetailPage = () => {
     const theme = useTheme();
 
     /* 
-    제품 정보 받아오기
+    기존 제품 정보 받아오기
     */
 //   const [isLoading, setLoading] = useState(true);
 //   useEffect(() => {
 //   setLoading(false);
 //   }, []);
-return (
+    return (
     <Grid container spacing={2}
         sx={{
             padding: '24px 8rem 24px 8rem',
@@ -105,44 +105,7 @@ return (
         </Grid>
       </Grid>
     </Grid>
-  );
-
-    /* return (
-        <Grid container>
-            <Grid item xs={6}
-            sx ={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <CardMedia
-                    component="img"
-                    image="/src/assets/images/menus/menu1.jpeg"
-                    alt="Example"
-                    sx = {{
-                        width: '20rem',
-                        height: '20rem',
-                        padding: '30px',
-                    }}
-                />
-            </Grid>
-            <Grid item xs={6}>
-                <Grid item>
-                    <Typography
-                    sx={{
-                        fontSize: '0.8rem',
-                        fontWeight: 500,
-                        color: 'text.dark',
-                        marginTop: 0
-                    }}
-                    >
-                    브랜드이름                                                                                                                                                                                                                                                                                                                                                           
-                    
-                    </Typography>
-                </Grid>
-            </Grid>
-        </Grid>
-    ); */
+    );
 };
 
 
