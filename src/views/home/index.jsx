@@ -15,22 +15,80 @@ import BurgerCard from './BurgerCard';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-
 const Home = () => {
- 
- const [isLoading, setLoading] = useState(true); 
- useEffect(() => {
-   setLoading(false);
-   }, []);
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+  setLoading(false);
+  }, []);
+
+  /* 
+  SHOW RECOMMENED BURGERS
+  */
+
+  // 임시. data 받아오면 map으로 순회
+  const recommendedNum = 6;
+  let recommendedItems = [];
+  for (let i=0; i<recommendedNum; i++) {
+    recommendedItems.push(
+      <Grid item
+        alignContent="center"
+        xs={3}
+        sx={{minWidth: "250px"}}
+        key={i}>
+        <BurgerCard isLoading={isLoading}></BurgerCard>
+      </Grid>
+    );
+  }
+
+  /* 
+  SHOW TOTAL BURGERS
+  */
+const totalNum = 11;
+let totalItems = [];
+for (let i=0; i<totalNum; i++) {
+  totalItems.push(
+    <Grid item
+      xs={3}
+      alignContent="center"
+      // margin="auto"
+      sx={{minWidth: "250px"}}
+      key={i}>
+        <BurgerCard isLoading={isLoading}></BurgerCard>
+    </Grid>
+  )
+}
+
+
+
   return (
     <>
+      {/*
+      햄버거 추천
+      비로그인 시 -> 로그인 후 추천 메뉴를 받아보세요 띄우기
+      */}
       <MainCard title="오늘의 추천 메뉴!">
-        <Grid container spacing={2}>
-          <BurgerCard isLoading={isLoading}></BurgerCard>
+        <Grid container spacing={2}
+          wrap='nowrap'
+          style={{
+            overflowX: 'auto',
+          }}>
+          {recommendedItems}
+        </Grid>
+      </MainCard>
+
+      {/* 
+      그냥 햄버거 보여줌      
+      */}
+      <MainCard title="전체보기" sx ={{marginTop: '20px'}}>
+        <Grid container
+          spacing={2}
+          marginX="auto"
+          >
+          {totalItems}
         </Grid>
       </MainCard>
     </>
-  );  
+  );
 };
 
 export default Home;
