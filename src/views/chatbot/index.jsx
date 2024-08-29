@@ -1,17 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import React from "react";
 
 function ChatBot() {
-    const [response, setResponse] = useState(null);
+    const [chatHistory, setChatHistory] = useState([]);
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
 
     /* url로 요청 */
-    const sendMessage = async () => {
+    const sendMessage = async (event) => {
+        event.preventDefault();
+
+        const newMessage = { sender: 'user', message: inputValue };
+        setChatHistory([...chatHistory, newMessage]);
+
         try {            
             const userId = 'SpicyGirl20';   // 임의 값
             const url = `https://moreburger.org/api/chatbot/${userId}`;
-
             const data = {
-                message: ""
+                message: inputValue,
             };
 
             const options = {
@@ -29,19 +38,39 @@ function ChatBot() {
             }
 
             const jsonResponse = await result.json();
-            setResponse(jsonResponse);  // 서버의 응답을 state에 저장
+            const botMessage = { sender: 'bot', message: jsonResponse.response };
+
+            setChatHistory(prevHistory => [...prevHistory, botMessage]);
 
         } catch (error) {
             console.error("Error sending message:", error);
-            setResponse("서버에서 데이터 가져오는거 실패함");
+            const errorMessage = { sender: 'bot', message: "Failed to get a response from the server." };
+            setChatHistory(prevHistory => [...prevHistory, errorMessage]);
         }
+        console.log(chatHistory);
+        setInputValue('');
     };
 
     return (
-        <form>
-            <input type="text" placeholder="무엇이든 물어보세요"></input>
-            <button className="send-button" type="submit" onClick={sendMessage}>➤</button>
-        </form>
+        <div>
+            <div className="chat-window">
+                {chatHistory.map((message, index) => (
+                    <div key={index} className={`chat-message ${message.sender}`}>
+                        <span>{message.message}</span>
+                    </div>
+                ))}
+            </div>
+
+            <form onSubmit={sendMessage}>
+                <input 
+                    type="text" 
+                    value={inputValue} 
+                    onChange={handleInputChange} 
+                    placeholder="무엇이든 물어보세요" 
+                />
+                <button type="submit">전송</button>
+            </form>
+        </div>
     );
 }
 
