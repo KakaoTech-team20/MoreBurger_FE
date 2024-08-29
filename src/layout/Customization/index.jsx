@@ -14,6 +14,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
+import ChatBot from 'views/chatbot';
 
 // assets
 import { IconSettings } from '@tabler/icons-react';
@@ -66,13 +67,14 @@ const Customization = () => {
         open={open}
         PaperProps={{
           sx: {
-            width: 280
+            width: 600,
+            padding: 5
           }
         }}
       >
         <PerfectScrollbar component="div">
-          <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
-          </Grid>
+          {/* 챗봇 페이지 컴포넌트 삽입 */}
+          <ChatBot />
         </PerfectScrollbar>
       </Drawer>
     </>
