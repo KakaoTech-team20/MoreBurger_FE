@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 
 // material-ui
-import { Grid, CardMedia, Button, Divider, InputLabel, TextField, Input } from '@mui/material';
+import { Grid, Button, Divider, TextField, Input } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 
