@@ -27,31 +27,33 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project imports
-import Google from 'assets/images/icons/social-google.svg';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
 // assets
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 // ===========================|| USER DETAIL ||=========================== //
 
 const AuthRegisterDetail = ({ ...others }) => {
   const navigate = useNavigate();
-
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
-  const [showPassword, setShowPassword] = useState(false);
-  const [checked, setChecked] = useState(true);
 
-  const [strength, setStrength] = useState(0);
-  const [level, setLevel] = useState();
+  const [data, setData] = useState([]);
+
+  const labels = ['난류', '밀', '대두', '우유', '쇠고기', '토마토', '오징어', '닭고기', '조개류'];
+  const [clickedBtns, setClickedBtns] = useState(Array(labels.length).fill(false));
+
+  const handleClick = (index) => {
+    const newClickedBtns = [...clickedBtns];
+    newClickedBtns[index] = !newClickedBtns[index];
+    setClickedBtns(newClickedBtns);
+  }
+
 
   return (
     <>
-      <Grid container direction="column" justifyContent="center" spacing={2}>
+      <Grid container direction="column" justifyContent="center" spacing={2} marginBottom={2}>
         <Grid item xs={12}>
           <Box sx={{ alignItems: 'center', display: 'flex' }}>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />            
@@ -62,38 +64,66 @@ const AuthRegisterDetail = ({ ...others }) => {
       <Formik
         initialValues={{
           nickname: '',
-          submit: null
+          submit: null         
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          // 여기에 상태 업데이트 로직 추가
         }}
       >
-        {({ errors, handleBlur, handleChange, handleSubmit, sendAuth, isValid, isSubmitting, touched, values }) => (
+        {({ errors, handleSubmit, isSubmitting }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
-            <Grid container spacing={3} direction="column" alignItems="flex-start">
-              <Grid item>
-                  <RadioGroup row>
-                    <FormLabel>나는</FormLabel>
+            <Grid container spacing={3} direction="column" alignItems="center">
+              <Grid item
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                marginTop={2}>
+                  <Typography sx={{...theme.typography.body1}}>나는</Typography>
+                  <RadioGroup row sx={{marginX: '16px'}}>
                     <FormControlLabel value="구매자" control={<Radio />} label="구매자" />
                     <FormControlLabel value="판매자" control={<Radio />} label="판매자" />
                   </RadioGroup>
               </Grid>
 
               <Grid item>
-                <TextField label="닉네임" variant="outlined" size="small" />
-              </Grid>              
-
-              <Grid item>
-                <TextField label="나이" type='number' variant="outlined" size="small" sx={{ width: '60px', ml: 2 }} />
+                <TextField label="닉네임" variant="outlined" size="small"/>
               </Grid>
 
-              <Grid item>
-                <FormLabel>성별</FormLabel>
-                  <RadioGroup row>
-                    <FormControlLabel value="여자" control={<Radio />} label="여자" />
+              <Grid item
+                display="flex"
+                justifyContent="center"
+                alignItems="center">
+                  <Typography sx={{...theme.typography.body1}}>성별</Typography>
+                  <RadioGroup row sx={{marginX: '16px'}}>
                     <FormControlLabel value="남자" control={<Radio />} label="남자" />
+                    <FormControlLabel value="여자" control={<Radio />} label="여자" />
                   </RadioGroup>
               </Grid>
 
+              <Grid item display="flex" alignItems="center">
+                <Typography sx={{...theme.typography.body1}}>나이</Typography>
+                <TextField variant="outlined" type='number' size="small"
+                  sx={{ 
+                    width: '60px',
+                    ml: 2,
+                    '& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button' : {
+                      'WebkitAppearance' : 'none',
+                      margin: 0
+                    }
+                  }} />
+              </Grid>
+
               <Grid item>
-                <FormLabel>매운 맛을 좋아하시나요?</FormLabel>
+                <RadioGroup row alignItems='center'>
+                  <Typography sx={{...theme.typography.body1, marginX: 2}}>나는</Typography>
+                  <FormControlLabel value="소식좌" control={<Radio />} label="소식좌" />
+                  <FormControlLabel value="보통좌" control={<Radio />} label="보통좌" />
+                  <FormControlLabel value="대식좌" control={<Radio />} label="대식좌" />
+                </RadioGroup>
+              </Grid>
+
+              <Grid item marginTop={2}>
+                <Typography sx={{...theme.typography.h5, textAlign: 'center', padding: 1}}>매운 맛을 좋아하시나요?</Typography>
                   <RadioGroup row>
                     <FormControlLabel value="좋아요" control={<Radio />} label="좋아요" />
                     <FormControlLabel value="보통이에요" control={<Radio />} label="보통이에요" />
@@ -101,36 +131,31 @@ const AuthRegisterDetail = ({ ...others }) => {
                   </RadioGroup>
               </Grid>
 
-              <Grid item>
-                <FormLabel>나는</FormLabel>
-                <RadioGroup row>
-                  <FormControlLabel value="소식좌" control={<Radio />} label="소식좌" />
-                  <FormControlLabel value="보통좌" control={<Radio />} label="보통좌" />
-                  <FormControlLabel value="대식좌" control={<Radio />} label="대식좌" />
-                </RadioGroup>
-              </Grid>
-
-              <Grid item>
-                <FormLabel>갖고 계신 알러지를 알려주세요</FormLabel>
-                <Grid container>
-                  <FormControlLabel control={<Checkbox />} label="있어요" />
-                  <FormControlLabel control={<Checkbox />} label="없어요" />
+              <Grid item marginTop={3}>
+                <Typography sx={{...theme.typography.h5, padding: 1, textAlign: 'center'}}>알러지가 있나요?</Typography>
+                <Grid 
+                  container 
+                  justifyContent="center"
+                  alignItems="center"
+                  spacing={1}
+                  sx={{marginTop: 1}}
+                >
+                  {labels.map((label, index) => (
+                    <Grid item key={index}>
+                      <Button
+                        variant={clickedBtns[index] ? "contained" : "outlined"}
+                        sx={{ mx: 1 }}
+                        onClick={() => handleClick(index)}
+                      >
+                        {label}
+                      </Button>
+                    </Grid>
+                  ))}
                 </Grid>
-              </Grid>
-
-              <Grid item>
-                <Button variant="contained">새우</Button>
-                <Button variant="contained" sx={{ mx: 1 }}>땅콩</Button>
-                <Button variant="contained">우유</Button>
-                <Button variant="contained" sx={{ mx: 1 }}>쇠고기</Button>
-                <Button variant="contained">토마토</Button>
-                <Button variant="contained" sx={{ mx: 1 }}>오징어</Button>
-                <Button variant="contained">닭고기</Button>
-                <Button variant="contained" sx={{ mx: 1 }}>조개류</Button>
               </Grid>
             </Grid>
 
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ mt: 2, marginTop: 5 }}>
               <AnimateButton>
                 <Button
                   disableElevation disabled={isSubmitting} fullWidth size="large" 
