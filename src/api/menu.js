@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const endpoints = {
-  key: 'api/menu',
+  key: 'api/burgers',
   master: 'master',
   home: '/home' // server URL
 };
