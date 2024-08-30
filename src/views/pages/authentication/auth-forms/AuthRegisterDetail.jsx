@@ -114,7 +114,7 @@ const AuthRegisterDetail = ({ ...others }) => {
               </Grid>
 
               <Grid item>
-                <RadioGroup row alignItems='center'>
+                <RadioGroup row sx={{alignItems: 'center' }}>
                   <Typography sx={{...theme.typography.body1, marginX: 2}}>나는</Typography>
                   <FormControlLabel value="소식좌" control={<Radio />} label="소식좌" />
                   <FormControlLabel value="보통좌" control={<Radio />} label="보통좌" />
