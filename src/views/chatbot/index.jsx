@@ -1,10 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import React from "react";
+import { ChatFeed, Message } from "react-chat-ui";
+
+// material-ui
+import { Grid, Input, Button, DialogContent } from "@mui/material";
+import { fontFamily, fontSize, useTheme } from "@mui/system";
 
 function ChatBot() {
+    /* user id 받아오기 */
+    const theme = useTheme();
     const [chatHistory, setChatHistory] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [userId, setUserId] = useState('');
+    const [userId, setUserId] = useState('user1234');
     useEffect(() => {
         console.log("chat history 변경: ", chatHistory);
     }, [chatHistory]);
@@ -21,7 +28,7 @@ function ChatBot() {
     const sendMessage = async (event) => {
         event.preventDefault();
 
-        const newMessage = { sender: `${userId}`, message: inputValue };
+        const newMessage = new Message({ id: 0, senderName: `${userId}`, message: inputValue });
         const data = {
             message: inputValue,
         };
@@ -45,13 +52,13 @@ function ChatBot() {
             }
 
             const jsonResponse = await result.json();
-            const botMessage = { sender: 'bot', message: jsonResponse.response };
+            const botMessage = new Message({ id:1, senderName: 'bot', message: jsonResponse.response });
 
             setChatHistory(prevHistory => [...prevHistory, botMessage]);
 
         } catch (error) {
             console.error("Error sending message:", error);
-            const errorMessage = { sender: 'bot', message: "Failed to get a response from the server." };
+            const errorMessage = new Message({ id: 1, message: "Failed to get a response from the server.", senderName: "bot" });
             setChatHistory(prevHistory => [...prevHistory, errorMessage]);
         }
 
@@ -59,32 +66,47 @@ function ChatBot() {
     };
 
     return (
-        <div>
-            <div className="chat-window">
-                {chatHistory.map((message, index) => (
-                    <div key={index} className={`chat-message ${message.sender}`}>
-                        <span>{message.message}</span>
-                    </div>
-                ))}
-            </div>
+        <>
+        <Grid container>
+            <ChatFeed
+                messages={chatHistory}
+                isTyping={false}
+                hasInputField={false}
+                bubblesCentered={false}
+                bubbleStyles={{
+                    text: {
+                        fontSize: '1rem',
+                        fontFamily: theme.fontFamily
+                    }
+                }}
+            ></ChatFeed>
+        </Grid>
 
-            <form onSubmit={sendMessage}>
-                <input 
-                    type="text" 
-                    value={userId} 
-                    onChange={handleUserIdChange} 
-                    placeholder="userId" 
-                />
-
-                <input 
-                    type="text" 
-                    value={inputValue} 
-                    onChange={handleInputChange} 
-                    placeholder="무엇이든 물어보세요" 
-                />
-                <button type="submit">전송</button>
-            </form>
-        </div>
+        <form onSubmit={sendMessage}
+            style={{
+                position: 'fixed',
+                bottom: 0,
+                width: 570,
+                backgroundColor: 'white',
+                padding: '10px',
+            }}
+        >
+            <Grid container margin="auto">
+                <Grid item xs={10}>
+                    <Input
+                        fullWidth
+                        type="text"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        placeholder="무엇이든 물어보세요">
+                    </Input>                        
+                </Grid>
+                <Grid item xs={2}>
+                    <Button type="submit">전송</Button> 
+                </Grid>
+            </Grid>
+        </form>
+        </>
     );
 }
 
