@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
     image: Yup.mixed().required("이미지를 업로드하세요."),
   });
 
-function DetailPageSeller() {
+function DetailUpdateSeller() {
     const theme = useTheme();
     const [imagePreview, setImagePreview] = useState(null);
     const location = useLocation();
@@ -169,17 +169,27 @@ function DetailPageSeller() {
                             }}
                         ></TextField>
 
-                        {/* 새로 만들기 */}
+                        {/* 수정하기 및 삭제하기 */}
                         <Grid container spacing={2} sx={{ marginTop: 2 }}>
-                            <Grid item xs={12}>
-                                <Button
-                                    type="submit"
-                                    variant='contained'
-                                    fullWidth
-                                    sx={{...theme.components.MuiButton}}>
-                                새 메뉴 추가하기
-                                </Button>
-                            </Grid>
+                        <Grid item xs={6}>
+                            <Button
+                                type="submit"
+                                variant='contained'
+                                fullWidth
+                                sx={{...theme.components.MuiButton}}>
+                            수정하기
+                            </Button>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Button
+                                type="button"
+                                onClick={handleDelete}
+                                variant='contained'
+                                fullWidth
+                                sx={{...theme.components.MuiButton}}>
+                            삭제하기
+                            </Button>
+                        </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -188,4 +198,4 @@ function DetailPageSeller() {
     );
 }
 
-export default DetailPageSeller;
+export default DetailUpdateSeller;
