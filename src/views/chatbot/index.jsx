@@ -3,8 +3,8 @@ import React from "react";
 import { ChatFeed, Message } from "react-chat-ui";
 
 // material-ui
-import { Grid, Input, Button, DialogContent } from "@mui/material";
-import { fontFamily, fontSize, useTheme } from "@mui/system";
+import { Grid, Input, Button } from "@mui/material";
+import { useTheme } from "@mui/system";
 
 function ChatBot() {
     /* user id 받아오기 */
@@ -12,6 +12,7 @@ function ChatBot() {
     const [chatHistory, setChatHistory] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [userId, setUserId] = useState('user1234');
+
     useEffect(() => {
         console.log("chat history 변경: ", chatHistory);
     }, [chatHistory]);
@@ -19,10 +20,6 @@ function ChatBot() {
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
-    
-    const handleUserIdChange =(e) => {
-        setUserId(e.target.value);
-    }
 
     /* url로 요청 */
     const sendMessage = async (event) => {
