@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // material-ui
 import { Grid, CardMedia, Typography, Button, Divider } from '@mui/material';
@@ -6,7 +6,6 @@ import { useTheme } from '@mui/material/styles';
 
 
 // project
-// import BurgerCard from './BurgerCard';
 // import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
 
@@ -17,13 +16,29 @@ import MainCard from 'ui-component/cards/MainCard';
 const DetailPage = () => {
     const theme = useTheme();
 
-    /* 
-    기존 제품 정보 받아오기
-    */
-//   const [isLoading, setLoading] = useState(true);
-//   useEffect(() => {
-//   setLoading(false);
-//   }, []);
+    const [data, setData] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+    useEffect(() => {
+      // 데이터 가져오기 요청
+      fetch(`https://moreburger.org/api/burgers/${burgerId}`) // 여기에 실제 API 엔드포인트를 입력하세요.
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('버거 상세 데이터 불러오기 실패');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+          setLoading(false);
+        });
+    }, []); // 빈 배열을 넣어 컴포넌트가 처음 렌더링될 때만 실행되도록 설정
+  
+
     return (
     <Grid container spacing={2}
         sx={{
