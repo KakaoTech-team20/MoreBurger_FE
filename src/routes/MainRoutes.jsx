@@ -5,7 +5,6 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import { element } from 'prop-types';
 import DetailPage from 'views/detail-page';
-import DetailPageSeller from 'views/detail-page/DetailPageSeller';
 // import { element } from 'prop-types';
 // import DetailPage from 'views/detail-page';
 
@@ -41,7 +40,7 @@ const MainRoutes = {
     },
     {
       path: 'home/detail-seller',
-      element: <DetailPageSeller />
+      element: <DetailPage />
     }
   ]
 };
