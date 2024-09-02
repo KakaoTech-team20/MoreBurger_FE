@@ -84,8 +84,8 @@ const AuthLogin = ({ ...others }) => {
         setErrors({ submit: errorData.message || '서버 오류가 발생했습니다.' });
       } else {
         const data = await response.json();
-        console.log('Login successful', data); // 성공 시 원하는 작업 수행
-        // 예: 토큰 저장, 리다이렉트 등
+        console.log('Login successful', data);
+        localStorage.setItem('token', data.token);
         navigate('/home');
       }
     } catch (error) {
