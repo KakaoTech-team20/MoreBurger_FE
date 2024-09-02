@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useGoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -19,7 +18,6 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 // third party
@@ -81,8 +79,8 @@ const AuthRegister = ({ ...others }) => {
     setLevel(strengthColor(temp));
   };
 
-  const handleNext = () => {
-    navigate('/pages/register/detail3');
+  const handleNext = (values) => {
+    navigate('/pages/register/detail3', { state: { email: values.email, password: values.password } });
   }
 
   useEffect(() => {
@@ -149,7 +147,6 @@ const AuthRegister = ({ ...others }) => {
         initialValues={{
           email: '',
           password: '',
-          submit: null
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('올바른 이메일 형식을 입력해주세요').max(255).required('이메일을 입력해주세요'),
@@ -289,7 +286,7 @@ const AuthRegister = ({ ...others }) => {
                 <Button
                   /* 버튼 클릭 시 사용자 세부정보 입력 페이지로 */
                   onClick={handleNext}
-                  disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
+                  disableElevation disabled={isSubmitting} fullWidth size="large" type="button" variant="contained" color="secondary">
                   다음
                 </Button>
               </AnimateButton>
