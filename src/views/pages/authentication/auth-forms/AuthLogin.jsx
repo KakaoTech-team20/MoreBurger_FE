@@ -86,6 +86,8 @@ const AuthLogin = ({ ...others }) => {
         const data = await response.json();
         console.log('Login successful', data);
         localStorage.setItem('token', data.token);
+        localStorage.setItem('username', data.username);
+        // localStorage.setItem('role', data.role);
         navigate('/home');
       }
     } catch (error) {
