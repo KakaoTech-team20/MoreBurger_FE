@@ -50,7 +50,7 @@ const BurgerCard = ({ isLoading }) => {
             cursor: 'pointer',
             // minWidth: "250px"            
           }}>
-            <Grid container direction="column">
+            <Grid container direction="column" alignContent="center">
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
