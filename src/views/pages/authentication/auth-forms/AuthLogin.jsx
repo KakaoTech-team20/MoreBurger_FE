@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useGoogleLogin } from '@react-oauth/google';
 
@@ -38,6 +39,7 @@ import Google from 'assets/images/icons/social-google.svg';
 const AuthLogin = ({ ...others }) => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(true);
 
@@ -54,15 +56,45 @@ const AuthLogin = ({ ...others }) => {
 
 
   const [showPassword, setShowPassword] = useState(false);
-  const url = '';
-
+  
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
+  
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  
+  const url = 'https://moreburger.org/api/auth/login';
+  const handlerLogin = async (values, {setErrors, setSubmitting}) => {
+    try {
+      const response = await fetch(url , {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setErrors({ submit: errorData.message || '서버 오류가 발생했습니다.' });
+      } else {
+        const data = await response.json();
+        console.log('Login successful', data); // 성공 시 원하는 작업 수행
+        // 예: 토큰 저장, 리다이렉트 등
+        navigate('/home');
+      }
+    } catch (error) {
+      setErrors({ submit: '서버와의 통신에 실패했습니다.' });
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
 
   return (
     <>
@@ -131,12 +163,12 @@ const AuthLogin = ({ ...others }) => {
         initialValues={{
           email: '',
           password: '',
-          submit: null
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('올바른 이메일 형식을 입력해주세요').max(255).required('이메일을 입력해주세요'),
           password: Yup.string().max(255).required('비밀번호를 입력해주세요')
         })}
+        onSubmit={handlerLogin}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
