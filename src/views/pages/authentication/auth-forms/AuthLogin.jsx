@@ -85,7 +85,7 @@ const AuthLogin = ({ ...others }) => {
       } else {
         const data = await response.json();
 
-        console.log(response)
+        console.log('role', response.headers.get('X-User-Role'))
         console.log('Login successful', data);
 
         localStorage.setItem('token', data.token);

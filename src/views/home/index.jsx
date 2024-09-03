@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
 
 // material-ui
+import { useTheme } from '@emotion/react';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 
 // project
@@ -9,7 +12,7 @@ import { Typography } from '@mui/material';
 // import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
 import BurgerCard from './BurgerCard';
-import { useLocation } from 'react-router-dom';
+import { margin } from '@mui/system';
 
 // assets
 // import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
@@ -19,13 +22,28 @@ import { useLocation } from 'react-router-dom';
 const Home = () => {
   const [isLoading, setLoading] = useState(true);
   const location = useLocation();
+  const theme = useTheme();
+  const navigation = useNavigate();
 
   const role = location.state?.role;
+  const token = localStorage.getItem('token');
+  console.log('token', token);
   
-  useEffect(() => {
-  setLoading(false);
-  }, []);
-
+  if (token === null) {
+    return (
+      <Grid container spacing={5}>
+        <Grid item
+          textAlign='center'
+          sx={{width: '100%'}}>
+          <MainCard sx={{height: '700px', alignContent: 'center'}}>
+            <Typography sx={theme.typography.h3}>로그인 하면 메뉴 보여주지</Typography>
+            <Button variant='contained' sx={{margin: 2}}>로그인</Button>
+            <Button variant='contained' sx={{margin: 2}}>회원가입</Button>
+          </MainCard>
+        </Grid>
+      </Grid>
+    )
+  }
   /* 
   SHOW RECOMMENED BURGERS
   */
