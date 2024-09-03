@@ -80,20 +80,22 @@ const AuthLogin = ({ ...others }) => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        setErrors({ submit: errorData.message || '서버 오류가 발생했습니다.' });
+          const errorData = await response.json();
+          setErrors({ submit: errorData.message || '서버 오류가 발생했습니다.' });
       } else {
         const data = await response.json();
+
+        console.log(response)
         console.log('Login successful', data);
+
         localStorage.setItem('token', data.token);
-        localStorage.setItem('username', data.username);
-        // localStorage.setItem('role', data.role);
+        localStorage.setItem('email', values.email);
         navigate('/home');
       }
     } catch (error) {
-      setErrors({ submit: '서버와의 통신에 실패했습니다.' });
+        etErrors({ submit: '서버와의 통신에 실패했습니다.' });
     } finally {
-      setSubmitting(false);
+        setSubmitting(false);
     }
   }
 

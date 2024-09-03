@@ -52,9 +52,20 @@ const ProfileSection = () => {
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
   const anchorRef = useRef(null);
+
   const handleLogout = async () => {
-    /* 로그아웃 로직 */
+    const url = 'https://moreburger.org/api/auth/logout'
     console.log('Logout');
+
+    /* 
+    통신 방법 물어보기
+    */
+    /* const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Bearer Token' : localStorage.getItem('token')
+      }
+    }); */
   };
 
   const handleClose = (event) => {
