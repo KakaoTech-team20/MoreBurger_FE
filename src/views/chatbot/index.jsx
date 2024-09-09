@@ -11,7 +11,7 @@ function ChatBot() {
     const theme = useTheme();
     const [chatHistory, setChatHistory] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [userId, setUserId] = useState('user1234');
+    const [userId, setUserId] = useState(localStorage.getItem('email'));
 
     useEffect(() => {
         console.log("chat history 변경: ", chatHistory);

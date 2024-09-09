@@ -11,6 +11,7 @@ import { useTheme } from '@mui/material/styles';
 import MainCard from 'ui-component/cards/MainCard';
 import DetailPageSeller from './DetailPageSeller';
 import DetailUpdateSeller from './DetailUpdateSeller';
+import mockDetail from 'api/mockDetail';
 
 // assets
 
@@ -20,9 +21,13 @@ const DetailPage = () => {
     const theme = useTheme();
     const location = useLocation();
     const burgerId = location.state?.burgerId || 1;
-    const role = location.state?.role;
-    const [data, setData] = useState(null);
+    const role = localStorage.getItem('role');
+    const [data, setData] = useState(mockDetail);
     const [isLoading, setLoading] = useState(true);
+    const allergies = data.allergies.map((allergy) => allergy).join(' ');
+
+    console.log(allergies);
+    
     
     useEffect(() => {
       // 데이터 가져오기 요청
@@ -60,7 +65,7 @@ const DetailPage = () => {
         {/* 브랜드명 */}
         <Grid item xs={12} sx={{marginBottom: 5}}>
           <Typography sx={theme.typography.h2} gutterBottom>
-            브랜드 명
+            {data.brand}
           </Typography>
           <Divider />
         </Grid>
@@ -78,25 +83,22 @@ const DetailPage = () => {
         {/* 우측: 정보 */}
         <Grid item xs={6}>
           <Typography sx={theme.typography.h3} gutterBottom>
-            이름
+            {data.name}
           </Typography>
           <Typography sx={theme.typography.menuCaption} gutterBottom>
-            햄버거 설명
-          </Typography>
-          <Typography sx={theme.typography.subtitle1} gutterBottom>
-            가격: 00,000원
+            {data.description}
           </Typography>
   
           {/* 옵션 선택 (단품, 세트) */}
           <Grid container spacing={2} sx={{ marginTop: 2 }}>
             <Grid item xs={6}>
               <Button variant="outlined" fullWidth>
-                단품 00,000원
+                {data.price} 원
               </Button>
             </Grid>
             <Grid item xs={6}>
               <Button variant="outlined" fullWidth>
-                세트 00,000원
+              {data.price + 1900} 원
               </Button>
             </Grid>
           </Grid>
@@ -107,7 +109,7 @@ const DetailPage = () => {
           </Typography>
           <Divider sx={{ marginBottom: 2 }} />
           <Typography variant="subtitle2" sx={{ marginTop: 2 }}>
-            서버에서 받아온 알레르기 정보
+            {allergies}
           </Typography>
   
           {/* 장바구니 및 구매 버튼 */}

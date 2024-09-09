@@ -14,7 +14,8 @@ import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 // ===========================|| BURGER CARD ||=========================== //
 
-const BurgerCard = ({ isLoading }) => {
+const BurgerCard = ({ isLoading, burgerData, onClick }) => {
+  console.log(burgerData);
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -66,7 +67,7 @@ const BurgerCard = ({ isLoading }) => {
                         fontWeight: 500, 
                         mr: 1, mt: 1.75, mb: 0.75 
                       }}
-                    >맛있는 햄버거</Typography>
+                    >{burgerData.name}</Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -78,7 +79,7 @@ const BurgerCard = ({ isLoading }) => {
                     color: 'text.dark'
                   }}
                 >
-                  8,000₩
+                  {burgerData.price}₩
                 </Typography>
               </Grid>
               <Grid item sx={{ mb: 1.25 }}>
@@ -90,7 +91,7 @@ const BurgerCard = ({ isLoading }) => {
                     marginTop: 0
                   }}
                 >
-                  브랜드이름
+                  {burgerData.brand}
                 </Typography>
               </Grid>
             </Grid>

@@ -39,11 +39,17 @@ function DetailPageSeller() {
 
     }
 
-    const handleDelete = () => {
+    const handleDelete = (e) => {
         const url = ``
         /* fetch delete */
+
         if (window.confirm("정말로 이 상품을 삭제하시겠습니까?")) {
-            alert("상품이 삭제되었습니다.");
+            try {
+
+            } catch (error) {
+                
+            }
+            
         }
     }
 
